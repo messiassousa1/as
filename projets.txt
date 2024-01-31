@@ -1,0 +1,73 @@
+PROJETO AMIGO SECRETO
+
+Panel de administração
+- Castrar eventos
+- castrar grupos 
+- castrar Pessoas
+
+
+site:
+- Acessar tela de eventos
+
+Caracteristica:
+- No banco de dados, não podemos identificar que tirou quem 
+- o Sorteio acontece na hora do cadatro,  não na hora da identifcação.
+- O painel de administração vai ter senha única.
+
+
+PLANJAMENTO DE BANCO DE DADOS
+
+- EVENTOS 
+- GRUPOS 
+- PESSOAS 
+
+   Tabela 
+events
+- id INT AUTO_INCREMENT
+- istatus BOOLEAN default=false
+- title STRING 
+- description STRING 
+- grouped BOOLEAN default=false
+
+eventGroups
+- id INT PK AUTO_INCREMET
+- id_vent INT (Relaciona a events.id)
+- name STRING 
+
+eventPeople
+id INT PK AUTO_INCREMET
+- id_event INT (RELACIONADO a event.id)
+- id_group INT (RELACIONADO a eventGroups.id)
+- name STRING 
+- cpf STRING 
+- matched STRING default=""
+
+
+
+PLANJAMENTO DE ROTAS 
+
+CRUD = create, Read, Update, Delete
+
+
+- POS /admin/login
+
+- GET - /admin/events
+- GET - /admin/events/:id
+- POST  /admin/events
+- PUT - /admin/events/:id
+
+
+- GET - /admin/events/:id_enent/groups
+- GET - /admin/events/:id_event/groups/:id
+- POST - /admin/events/:id_event/gRoups
+- PUT - /admin/events/:id_event/goups/:id
+- DELETE - /admin/events/:id_event/groups/:id
+
+- GET /admin/events/:id_events/groups/:id_group/people
+- GET /admin/events/:id_events/groups/:id_group/people/:id
+- POST /admin/events/:id_events/groups/:id_group/people/:id
+- DELETE /admin/events/:id_events/groups/:id_group/people/:id
+
+
+- GET /events/:id
+- GET /evests/:id_event/person/:cpf
