@@ -1,7 +1,7 @@
 import { RequestHandler } from "express";
 import * as events from '../services/events';
 import { z } from "zod";
-import { group } from "console";
+
 export const getAll: RequestHandler = async (req, res) => {
     const items = await events.getAll();
     if(items) return res.json({ events: items });
@@ -32,7 +32,7 @@ export const addEvent: RequestHandler = async (req, res) => {
     if(newEvent) return res.status(201).json({ event: newEvent });
 
     res.json({ error: 'Ocorreu um error' });
-}
+}  
 
 export const updateEvent: RequestHandler = async (req, res) => {
     const { id } = req.params;
@@ -48,6 +48,21 @@ export const updateEvent: RequestHandler = async (req, res) => {
 
     const updatedEvent = await events.update(parseInt(id), body.data);
     if(updatedEvent) {
-        return res.json({ event: updateEvent });
+        if(updatedEvent.status) {
+            //Todo: Fazer o sorteio
+        } else {
+            // TODO: limpar o sorteio
+        }
+        return res.json({ event: updatedEvent });
     }
+    res.json({ error: 'Ocorreu um error' });
+}
+
+export const deleteEvent: RequestHandler = async (req, res) => {
+    const { id } = req.params;
+    const deletedEvent = await events.remove(parseInt(id));
+    
+    if(deletedEvent) return res.json({ event: deletedEvent });
+
+    res.json({ error: 'Ocorreu um error' });
 }

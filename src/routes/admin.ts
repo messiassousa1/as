@@ -11,7 +11,8 @@ router.get('/ping', auth.validate, (req, res) => res.json({ pong: true, admin: t
 router.get('/events', auth.validate, events.getAll);
 router.get('/events/:id', auth.validate, events.getEvent);
 router.post('/events', auth.validate, events.addEvent);
-router.get('/events/:id', auth.validate, events.updateEvent);
+router.put('/events/:id', auth.validate, events.updateEvent);
+router.delete('/events/:id', auth.validate, events.deleteEvent);
 
 
 export default router;
