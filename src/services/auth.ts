@@ -12,6 +12,5 @@ export const createToken = () => {
 
 export const validateToken = (token: string) => {
     const currentToken = createToken();
-
     return token === currentToken;
 }
