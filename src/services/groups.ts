@@ -26,7 +26,26 @@ export const add = async (data: GroupsCreateData) => {
         const  eventItem = await events.getOne(data.id_event);
         if(!eventItem) return false;
 
-        return await prisma.eventGroup.create({ data })
+        return await prisma.eventGroup.create({ data });
 
     } catch(err) { return false }
 }
+
+
+type UpdateFilters = { id: number; id_event?: number; }
+type GroupUpdateData = Prisma.Args<typeof prisma.eventGroup, 'update'>['data'];
+export const update = async (filters: UpdateFilters, data: GroupUpdateData) => {
+    try {
+
+        return await prisma.eventGroup.update({ where: filters, data });
+    } catch(err) { return false }
+}
+
+type DeleteFilters = { id: number; id_event?: number; }
+export const remove = async (filters: DeleteFilters ) => {
+    try {
+        return await prisma.eventGroup.delete({ where: filters });
+    } catch(err) {return false}
+}
+
+
