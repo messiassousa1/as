@@ -36,3 +36,8 @@ export const remove = async (id: number) => {
         return await prisma.event.delete({ where: { id } })
     } catch(err) { return false }
 }
+
+
+export const doMaMatches = async (id: number ): Promise<boolean> => {
+    return true; // TEMP
+}
