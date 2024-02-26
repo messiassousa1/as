@@ -52,7 +52,7 @@ export const updateEvent: RequestHandler = async (req, res) => {
         if(updatedEvent.status) {
             //Todo: Fazer o sorteio
             const result =  await events.doMaMatches(parseInt(id));
-            if(result) {
+            if(!result) {
                 return res.json({ error: 'Grupos impossivel de sortear'});
             }
         } else {

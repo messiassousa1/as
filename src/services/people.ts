@@ -3,7 +3,7 @@ import * as groups from './groups';
 
 const prisma =  new PrismaClient();
 
-type GetAllFilters = { id_event: number; id_group: number; }
+type GetAllFilters = { id_event: number; id_group?: number; }
 export const getAll = async (filters: GetAllFilters ) => {
     try {
         return await prisma.eventPeople.findMany({ where: filters });
@@ -51,8 +51,4 @@ export const remove = async (filters: DeleteFilters) => {
     try {
         return await prisma.eventPeople.delete({ where: filters });
     } catch (err) { return false}
-}
-
-export const doMaMatches = async (id: number ): Promise<boolean> => {
-     return true; // TEMP
 }
