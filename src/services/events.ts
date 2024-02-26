@@ -2,6 +2,7 @@ import { PrismaClient, Prisma } from "@prisma/client";
 import * as people from './people';
 import * as groups from './groups';
 import { match } from "assert";
+import { encryptMatch } from "../util/match";
 
 const prisma = new PrismaClient();
 
@@ -101,19 +102,19 @@ export const doMaMatches = async (id: number ): Promise<boolean> => {
             }
 
             
-            console.log(`ATTEMPS: ${attemps}`);
-            console.log(`MAX ATTEMPS: ${maxAttempts}`);
-            console.log(sortedList);
-            /*
+            //console.log(`ATTEMPS: ${attemps}`);
+            //console.log(`MAX ATTEMPS: ${maxAttempts}`);
+            //console.log(sortedList);
+            
             if(attemps < maxAttempts) {
                 for(let i in sortedList) {
                     await people.update({
                         id: sortedList[i].id,
                         id_event: id
-                    }, { matched: '' });  // TODO: Criar encryptMatch
+                    }, { matched: encryptMatch(sortedList[i].match) });  // TODO: Criar encryptMatch
                 }
                 return true;
-            } */
+            } 
         }
     }
     return false; // TEMP

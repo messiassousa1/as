@@ -15,8 +15,6 @@ export const getEvent: RequestHandler = async (req, res) => {
     if(eventItem) return res.json({ event: eventItem });
 
     res.json({ error: 'ocorreu um erro' });
-
-
 }
 
 export const addEvent: RequestHandler = async (req, res) => {

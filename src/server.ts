@@ -16,9 +16,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.all('*', requestIntercepter);
-
-app.use('/admin', adminRoutes);
 app.use('/', siteRoutes);
+app.use('/admin', adminRoutes);
+
 
 const runServer = (port: number, server: http.Server) => {
     server.listen(port, () => {
